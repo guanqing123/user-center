@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/guns
+    url: jdbc:mysql://localhost:3306/guns?serverTimezone=CTT
     username: root
     password: root
     # mysql-connector-java >= 6.x com.mysql.cj.jdbc.Driver
@@ -11,8 +11,17 @@ spring:
       discovery:
         #指定nacos server的地址
         server-addr: 172.30.8.74:8848
+        # 指定namespace
+        #namespace: d1b4f9a9-6316-4bcb-91ac-cdfd3d25c987
+        # NJ 假设用户中心部署在南京机房
+        # 指定集群名称
+        cluster-name: BJ
+        metadata:
+          instance: c
+          haha: hehe
+          version: v1
   application:
     # 服务名称尽量用-,不要用_,不要用特殊字符
     name: user-center
 server:
-  port: 8081
+  port: 8080
