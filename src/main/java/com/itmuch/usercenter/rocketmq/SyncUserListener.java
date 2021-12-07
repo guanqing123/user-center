@@ -4,6 +4,7 @@ import com.itmuch.usercenter.modular.guns.mapper.SysUserMapper;
 import com.itmuch.usercenter.modular.guns.model.SysUser;
 import com.itmuch.usercenter.modular.guns.model.dto.SysUserDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ import org.springframework.stereotype.Service;
  * @Date 2021/12/7 22:05
  **/
 @Service
-@RocketMQMessageListener(consumerGroup = "consumer-group", topic = "sync_user")
+@RocketMQMessageListener(consumerGroup = "consumer-group", topic = "sync-user")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Slf4j
 public class SyncUserListener implements RocketMQListener<SysUserDTO> {
 
     private final SysUserMapper sysUserMapper;
@@ -28,5 +30,6 @@ public class SyncUserListener implements RocketMQListener<SysUserDTO> {
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
         sysUser.setSex(sysUserDTO.getSex());
         sysUserMapper.updateByPrimaryKey(sysUser);
+        log.info("用户同步完毕...");
     }
 }
