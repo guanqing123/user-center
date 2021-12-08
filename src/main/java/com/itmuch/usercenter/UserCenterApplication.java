@@ -1,5 +1,6 @@
 package com.itmuch.usercenter;
 
+import com.itmuch.usercenter.rocketmq.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -12,7 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @MapperScan("com.itmuch.**.mapper")
 @SpringBootApplication
-@EnableBinding(Sink.class)
+@EnableBinding({Sink.class, MySink.class})
 public class UserCenterApplication {
 
     public static void main(String[] args) {
