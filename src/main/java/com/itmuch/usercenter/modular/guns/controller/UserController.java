@@ -1,6 +1,7 @@
 package com.itmuch.usercenter.modular.guns.controller;
 
 import com.google.common.collect.Maps;
+import com.itmuch.usercenter.auth.CheckLogin;
 import com.itmuch.usercenter.modular.guns.model.SysUser;
 import com.itmuch.usercenter.modular.guns.model.dto.user.JwtTokenRespDTO;
 import com.itmuch.usercenter.modular.guns.model.dto.user.LoginRespDTO;
@@ -34,6 +35,7 @@ public class UserController {
     private final JwtOperator jwtOperator;
 
     @GetMapping("/{id}")
+    @CheckLogin
     public SysUser findById(@PathVariable Long id) {
         log.info("我被请求了...");
         return sysUserService.findById(id);
