@@ -19,7 +19,7 @@ public class MyTestStreamConsumer {
     @StreamListener(MySink.MY_INPUT)
     public void receive(String messageBody) {
         log.info("通过stream收到了消息：messageBody = {}", messageBody);
-        throw new IllegalArgumentException("抛异常");
+        // throw new IllegalArgumentException("抛异常");
     }
 
     /**
